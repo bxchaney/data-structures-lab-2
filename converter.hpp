@@ -6,17 +6,17 @@ class Converter
     private:
         struct Operand 
         {
-            CharList* expression;
+            CharList expression;
             Node* node;
 
-            ~Operand();
+           //  ~Operand();
         };
         
         // Recursive method
-        Operand* find_next_operand(Operand*);
+        Operand find_next_operand(Operand&);
 
-        CharList* _input;
-        CharList* _output;
+        CharList _input;
+        CharList _output;
 
         bool _illegal_characters;
         bool _invalid_expression;

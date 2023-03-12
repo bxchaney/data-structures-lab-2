@@ -3,26 +3,26 @@
 #include"converter.hpp"
 
 
-Converter::Operand::~Operand()
-{
-    expression = nullptr;
-    node = nullptr;
-}
+// Converter::Operand::~Operand()
+// {
+    
+//     node = nullptr;
+// }
 
 Converter::Converter() 
 {
-    _input = new CharList();
+    CharList _input {};
     _illegal_characters = false;
     _invalid_expression = false;
     _recursive_call_counter = 0;
-    _output = nullptr;
+    CharList _output {};
 }
 
 
 Converter::~Converter()
 {
-    delete _input;
-    if (_output != nullptr) { delete _output;}
+    _input.~CharList();
+    _output.~CharList();
 }
 
 void Converter::pushc(char c)
@@ -58,14 +58,15 @@ void Converter::pushc(char c)
     {
         _illegal_characters = true;
     }
-    _input->pushc(c);
+    _input.pushc(c);
 }
 
-Converter::Operand* Converter::find_next_operand(Operand* op)
+Converter::Operand Converter::find_next_operand(Operand& op)
 {
+    CharList expression{};
     _recursive_call_counter++;
-    if (op->node == nullptr) { return new Operand{op->expression, nullptr};}
-    char c = (op->node->character);       
+    if (op.node == nullptr) { return Operand{op.expression, nullptr};}
+    char c = (op.node->character);       
     std::cout << "character is:" << c << std::endl; 
     // if c is an operand, return it
     if (
@@ -74,9 +75,9 @@ Converter::Operand* Converter::find_next_operand(Operand* op)
         || ('a' <= c && c <= 'z')
        )
     {
-        CharList* expression = new CharList();
-        expression->pushc(c);
-        return new Operand{expression, op->node->next};
+        // CharList expression {};
+        expression.pushc(c);
+        return Operand{expression, op.node->next};
     }
     
     // If c is an operator, find left and right operands
@@ -90,14 +91,14 @@ Converter::Operand* Converter::find_next_operand(Operand* op)
         || c == '%'
        )
     {
-        Node* next = op->node->next;
-        Operand* left_operand = find_next_operand(new Operand{nullptr, next});
-        next = left_operand->node;
+        Node* next = op.node->next;
+        Operand left_operand = find_next_operand(Operand{expression, next});
+        next = left_operand.node;
         if (next == nullptr) 
         { 
             _invalid_expression = true;
-            left_operand->expression->pushc(c);
-            return new Operand{left_operand->expression, nullptr};
+            left_operand.expression.pushc(c);
+            return Operand{left_operand.expression, nullptr};
         }
         Operand* right_operand = find_next_operand(new Operand{nullptr, next});
 
@@ -127,7 +128,7 @@ Converter::Operand* Converter::find_next_operand(Operand* op)
 
 void Converter::convert_expression()
 {
-    Node* first = _input->get_head();
+    Node* first = _input.get_head();
     Operand* converted_expression = find_next_operand(new Operand{nullptr, first});
     if (_output != nullptr)
     {

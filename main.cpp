@@ -7,45 +7,50 @@
 int main() 
 {
 
-    CharList* a = new CharList();
+    CharList a {};
 
-    a->pushc('a');
-    a->pushc('b');
-    a->pushc('c');
-    a->pushc('d');
+    a.pushc('a');
+    a.pushc('b');
+    a.pushc('c');
+    a.pushc('d');
 
-    CharList* b = new CharList();
+    CharList b {};
 
-    b->pushc('e');
-    b->pushc('f');
-    b->pushc('g');
-    b->pushc('h');
+    b.pushc('e');
+    b.pushc('f');
+    b.pushc('g');
+    b.pushc('h');
 
-    a->append(b);
+    a.append(b);
 
-    std::cout << a->get_contents() << std::endl;
+    std::cout << a << std::endl;
+
+    a.reverse();
+
+    std::cout << a << std::endl;
+    std::cout << b << std::endl;
     
-    delete a;
 
 
-    Converter converter {};
 
-    converter.pushc('+');
-    converter.pushc('-');
-    converter.pushc('A');
-    converter.pushc(' ');
-    converter.pushc('B');
-    converter.pushc('*');
-    converter.pushc('C');
-    converter.pushc('D');
+    // Converter converter {};
 
-    std::cout << "values pushed" << std::endl;
+    // converter.pushc('+');
+    // converter.pushc('-');
+    // converter.pushc('A');
+    // converter.pushc(' ');
+    // converter.pushc('B');
+    // converter.pushc('*');
+    // converter.pushc('C');
+    // converter.pushc('D');
 
-    converter.convert_expression();
+    // std::cout << "values pushed" << std::endl;
 
-    std::cout << converter.get_output() << std::endl;
+    // converter.convert_expression();
 
-    std::cout << converter.is_invalid_expression() << std::endl;
+    // std::cout << converter.get_output() << std::endl;
+
+    // std::cout << converter.is_invalid_expression() << std::endl;
 
 
 }

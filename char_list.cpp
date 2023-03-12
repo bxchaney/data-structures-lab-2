@@ -7,6 +7,18 @@ CharList::CharList()
     _size = 0;
     _head = nullptr;
     _tail = nullptr;
+    _reverse_string = false;
+}
+
+CharList::CharList(const CharList& cl)
+{
+    Node* current_node = cl._head;
+    while (current_node != nullptr)
+    {
+        pushc(current_node->character);
+        current_node = current_node->next;
+    }
+    _reverse_string = cl._reverse_string;
 }
 
 CharList::~CharList()
@@ -55,43 +67,38 @@ void CharList::append(CharList& list)
     }
 }
 
-const char* CharList::get_contents()
+std::ostream& operator<<(std::ostream& os, const CharList& cl)
 {
-    if (_size == 0) return "";
-
-    char* str = new char[_size];
-
-    Node* current_node = _head;
-
-    for (int i = 0; current_node != nullptr; i++)
+    Node* current_node;
+    if (cl._reverse_string)
     {
-        str[i] = current_node->character;
-        current_node = current_node->next;
+        current_node = cl._tail;
+        while (current_node != nullptr)
+        {
+            os << current_node->character;
+            current_node = current_node->prev;
+        }
     }
-
-    return str;
-}
-
-const char* CharList::get_contents_reversed()
-{
-    if (_size == 0) return "";
-
-    char* str = new char[_size];
-
-    Node* current_node = _tail;
-
-    for (int i = 0; current_node != nullptr; i++)
+    else
     {
-        str[i] = current_node->character;
-        current_node = current_node->prev;
+        current_node = cl._head;
+        while (current_node != nullptr)
+        {
+            os << current_node->character;
+            current_node = current_node->next;
+        }
     }
-
-    return str;
+    return os;
 }
 
 int CharList::size()
 {
     return _size;
+}
+
+void CharList::reverse()
+{
+    _reverse_string = !_reverse_string;
 }
 
 Node* CharList::get_head()

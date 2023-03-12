@@ -21,7 +21,7 @@ class CharList
         ~CharList();
         
         void pushc(char);
-        void append(CharList*);    
+        void append(CharList&);    
         const char* get_contents();
         const char* get_contents_reversed();
         int size();

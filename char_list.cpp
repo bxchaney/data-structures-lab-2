@@ -44,31 +44,14 @@ void CharList::pushc(char c)
     _size++;
 }
 
-void CharList::append(CharList* list)
-{
-    if (list == nullptr) {return;}
-    
-    Node* new_head = list->get_head();
-    Node* new_tail = list->get_tail();
+void CharList::append(CharList& list)
+{  
+    Node* new_node = list.get_head();
 
-    if (_head == nullptr)
+    while (new_node != nullptr)
     {
-        _head = new_head;
-        _tail = new_tail;
+        pushc(new_node->character);
     }
-    else
-    {
-        _tail->next = new_head;
-        new_head->prev = _tail;
-        _tail = new_tail;
-    }
-    
-    _size += list->size();
-
-    list->set_head(nullptr);
-    list->set_tail(nullptr);
-
-    delete list;
 }
 
 const char* CharList::get_contents()

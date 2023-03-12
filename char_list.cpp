@@ -51,6 +51,7 @@ void CharList::append(CharList& list)
     while (new_node != nullptr)
     {
         pushc(new_node->character);
+        new_node = new_node->next;
     }
 }
 

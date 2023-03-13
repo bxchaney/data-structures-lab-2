@@ -12,6 +12,9 @@ CharList::CharList()
 
 CharList::CharList(const CharList& cl)
 {
+    _size = 0;
+    _head = nullptr;
+    _tail = nullptr;
     Node* current_node = cl._head;
     while (current_node != nullptr)
     {

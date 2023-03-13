@@ -33,22 +33,22 @@ int main()
 
 
 
-    // Converter converter {};
+    Converter converter {};
 
-    // converter.pushc('+');
-    // converter.pushc('-');
-    // converter.pushc('A');
+    converter.pushc('+');
+    converter.pushc('-');
+    converter.pushc('A');
     // converter.pushc(' ');
-    // converter.pushc('B');
-    // converter.pushc('*');
-    // converter.pushc('C');
-    // converter.pushc('D');
+    converter.pushc('B');
+    converter.pushc('*');
+    converter.pushc('C');
+    converter.pushc('D');
 
-    // std::cout << "values pushed" << std::endl;
+    std::cout << "values pushed" << std::endl;
 
-    // converter.convert_expression();
+    converter.convert_expression();
 
-    // std::cout << converter.get_output() << std::endl;
+    std::cout << converter << std::endl;
 
     // std::cout << converter.is_invalid_expression() << std::endl;
 

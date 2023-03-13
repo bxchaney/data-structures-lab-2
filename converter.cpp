@@ -63,7 +63,7 @@ void Converter::pushc(char c)
 
 Converter::Operand Converter::find_next_operand(Operand& op)
 {
-    CharList expression{};
+    CharList expression {};
     _recursive_call_counter++;
     if (op.node == nullptr) { return Operand{op.expression, nullptr};}
     char c = (op.node->character);       
@@ -77,6 +77,7 @@ Converter::Operand Converter::find_next_operand(Operand& op)
     {
         // CharList expression {};
         expression.pushc(c);
+        std::cout << "just pushed: " << c <<std::endl;
         return Operand{expression, op.node->next};
     }
     
@@ -92,7 +93,8 @@ Converter::Operand Converter::find_next_operand(Operand& op)
        )
     {
         Node* next = op.node->next;
-        Operand left_operand = find_next_operand(Operand{expression, next});
+        Operand operand {expression, next};
+        Operand left_operand = find_next_operand(operand);
         next = left_operand.node;
         if (next == nullptr) 
         { 
@@ -100,20 +102,18 @@ Converter::Operand Converter::find_next_operand(Operand& op)
             left_operand.expression.pushc(c);
             return Operand{left_operand.expression, nullptr};
         }
-        Operand* right_operand = find_next_operand(new Operand{nullptr, next});
+        
+        CharList right_expression {};
+        Operand right_op {right_expression, next };
+        Operand right_operand = find_next_operand(right_op);
 
         // right_operand's expression field is a hanging pointer after this
         // operation.
-        left_operand->expression->append(right_operand->expression);
-        left_operand->expression->pushc(c);
-        Operand* new_operand = new Operand{
-                                        left_operand->expression,
-                                        right_operand->node
-                                    };
-        
-        
-        delete left_operand;
-        delete right_operand;
+                left_operand.expression.append(right_operand.expression);
+        left_operand.expression.pushc(c);
+        Operand new_operand = Operand{
+                                left_operand.expression,right_operand.node
+                                };
         return new_operand;
     }
 
@@ -121,7 +121,8 @@ Converter::Operand Converter::find_next_operand(Operand& op)
     else 
     {
         
-        return find_next_operand(new Operand{nullptr, op->node->next});
+        Operand operand {expression, op.node->next};
+        return find_next_operand(operand);
     }
 
 }
@@ -129,12 +130,10 @@ Converter::Operand Converter::find_next_operand(Operand& op)
 void Converter::convert_expression()
 {
     Node* first = _input.get_head();
-    Operand* converted_expression = find_next_operand(new Operand{nullptr, first});
-    if (_output != nullptr)
-    {
-        delete _output;
-    }
-    _output = converted_expression->expression;
+    CharList expression {};
+    Operand operand {expression, first};
+    Operand converted_expression = find_next_operand(operand);
+    _output = converted_expression.expression;
 }
 
 bool Converter::has_illegal_character()
@@ -147,28 +146,51 @@ bool Converter::is_invalid_expression()
     return _invalid_expression;
 }
 
-const char* Converter::get_output()
+void Converter::reverse_output()
 {
-    if (_output == nullptr) return "";
-    return _output->get_contents();
+    _output.reverse();
 }
 
-const char* Converter::get_output_reversed()
+std::ostream& operator<<(std::ostream& os, const Converter& conv)
 {
-    if (_output == nullptr) return "";
-    return _output->get_contents_reversed();
+    os << "Input:" << std::endl;
+    os << "    " << conv._input << std::endl;
+    os << "Output:" << std::endl;
+    os << "    ";
+    if (conv._illegal_characters)
+    {
+        os << "This expression has illegal characters." << std::endl;
+    }
+    else if (conv._invalid_expression)
+    {
+        os << "This is an invalid expression";
+    }
+    else 
+    {
+        os << conv._output << std::endl << std::endl;
+    }
+    return os;
 }
+
+// const char* Converter::get_output()
+// {
+//     if (_output.size() == 0) return "";
+//     return _output->get_contents();
+// }
+
+// const char* Converter::get_output_reversed()
+// {
+//     if (_output == nullptr) return "";
+//     return _output->get_contents_reversed();
+// }
 
 void Converter::reset()
 {
-    delete _input;
-    if (_output != nullptr) { delete  _output;}
-
-    _input = new CharList();
+    CharList new_input {};
+    _input = new_input;
     _illegal_characters = false;
     _invalid_expression = false;
     _recursive_call_counter = 0;
-    _output = nullptr; 
 }
 
 int Converter::recursive_call_total()

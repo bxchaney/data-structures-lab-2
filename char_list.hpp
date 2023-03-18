@@ -34,6 +34,4 @@ class CharList
         Node* get_head();
         Node* get_tail();
 
-        void set_head(Node*);
-        void set_tail(Node*);
 };

@@ -127,12 +127,3 @@ Node* CharList::get_tail()
     return _tail;
 }
 
-void CharList::set_head(Node* node)
-{
-    _head = node;
-}
-
-void CharList::set_tail(Node* node)
-{
-    _tail = node;
-}

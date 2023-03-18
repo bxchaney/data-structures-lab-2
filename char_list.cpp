@@ -12,7 +12,7 @@ CharList::CharList()
 
 CharList::CharList(const CharList& cl)
 {
-    _size = cl._size;
+    _size = 0;
     _head = nullptr;
     _tail = nullptr;
     _reverse_string = cl._reverse_string;
@@ -41,7 +41,7 @@ CharList::~CharList()
 
 void CharList::operator = (const CharList& cl)
 {
-    _size = cl._size;
+    _size = 0;
     _reverse_string = cl._reverse_string;
     _head = nullptr;
     _tail = nullptr;

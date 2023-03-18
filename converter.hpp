@@ -9,8 +9,6 @@ class Converter
         {
             CharList expression;
             Node* node;
-
-           //  ~Operand();
         };
         
         // Recursive method

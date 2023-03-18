@@ -191,11 +191,9 @@ void Converter::reverse_output()
 
 std::ostream& operator<<(std::ostream& os, const Converter& conv)
 {
-    os << "Input:" << std::endl;
-    os << "    " << conv._input << std::endl;
+    os << "Input: " << conv._input << std::endl;
     os << "Recursive Calls: " << conv._recursive_call_counter << std::endl;
-    os << "Output:" << std::endl;
-    os << "    ";
+    os << "Output: ";
     if (conv._illegal_characters)
     {
         os << "This expression has illegal characters." << std::endl;

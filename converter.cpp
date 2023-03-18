@@ -3,12 +3,6 @@
 #include"converter.hpp"
 
 
-// Converter::Operand::~Operand()
-// {
-    
-//     node = nullptr;
-// }
-
 Converter::Converter() 
 {
     CharList _input {};
@@ -155,6 +149,7 @@ std::ostream& operator<<(std::ostream& os, const Converter& conv)
 {
     os << "Input:" << std::endl;
     os << "    " << conv._input << std::endl;
+    os << "Recursive Calls: " << conv._recursive_call_counter << std::endl;
     os << "Output:" << std::endl;
     os << "    ";
     if (conv._illegal_characters)
@@ -171,18 +166,6 @@ std::ostream& operator<<(std::ostream& os, const Converter& conv)
     }
     return os;
 }
-
-// const char* Converter::get_output()
-// {
-//     if (_output.size() == 0) return "";
-//     return _output->get_contents();
-// }
-
-// const char* Converter::get_output_reversed()
-// {
-//     if (_output == nullptr) return "";
-//     return _output->get_contents_reversed();
-// }
 
 void Converter::reset()
 {

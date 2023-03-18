@@ -142,11 +142,27 @@ bool Converter::is_candidate_expression()
 
 void Converter::convert_expression()
 {
+    if (is_only_whitespace())
+    {
+        return;
+    }
+    if (!is_candidate_expression())
+    {
+        
+        _invalid_expression = true;
+        return;
+    }
     Node* first = _input.get_head();
     CharList expression {};
     Operand operand {expression, first};
     Operand converted_expression = find_next_operand(operand);
     _output = converted_expression.expression;
+    
+    // This check may be unnecessary, but leaving as final check
+    if (_output.size() != (_operands_count + _operators_count))
+    {
+        _invalid_expression = true;
+    }
 }
 
 bool Converter::has_illegal_character()

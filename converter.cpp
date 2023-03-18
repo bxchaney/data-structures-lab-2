@@ -80,7 +80,6 @@ Converter::Operand Converter::find_next_operand(Operand& op)
     _recursive_call_counter++;
     if (op.node == nullptr) { return Operand{op.expression, nullptr};}
     char c = (op.node->character);       
-    std::cout << "character is:" << c << std::endl; 
     // if c is an operand, return it
     if (
         ('0' <= c && c <= '9') 
@@ -88,9 +87,7 @@ Converter::Operand Converter::find_next_operand(Operand& op)
         || ('a' <= c && c <= 'z')
        )
     {
-        // CharList expression {};
         expression.pushc(c);
-        std::cout << "just pushed: " << c <<std::endl;
         return Operand{expression, op.node->next};
     }
     
@@ -122,7 +119,7 @@ Converter::Operand Converter::find_next_operand(Operand& op)
 
         // right_operand's expression field is a hanging pointer after this
         // operation.
-                left_operand.expression.append(right_operand.expression);
+        left_operand.expression.append(right_operand.expression);
         left_operand.expression.pushc(c);
         Operand new_operand = Operand{
                                 left_operand.expression,right_operand.node

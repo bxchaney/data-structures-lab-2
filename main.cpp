@@ -1,56 +1,61 @@
 #include<iostream>
+#include<fstream>
 #include"char_list.cpp"
 #include"converter.cpp"
 
 
 
-int main() 
+int main(int argc, char** argv) 
 {
 
-    CharList a {};
-
-    a.pushc('a');
-    a.pushc('b');
-    a.pushc('c');
-    a.pushc('d');
-
-    CharList b {};
-
-    b.pushc('e');
-    b.pushc('f');
-    b.pushc('g');
-    b.pushc('h');
-
-    a.append(b);
-
-    std::cout << a << std::endl;
-
-    a.reverse();
-
-    std::cout << a << std::endl;
-    std::cout << b << std::endl;
-    
+    if (argc < 3)
+    {
+        std::cout << "Please provide the input and output files."; 
+        std::cout << std::endl;
+        return -1;
+    }
 
 
+    std::filebuf fb_input;
+    std::filebuf fb_output;
+    if (!fb_input.open(argv[1], std::ios::in))
+    {
+       std::cout << "Problem opening input file!" << std::endl;
+       return -1;
+    }
+    else if (!fb_output.open(argv[2], std::ios::out))
+    {
+        std::cout << "Problem opening output file!" << std::endl;
+        fb_input.close();
+        return -1;
+    }
 
+    std::istream is(&fb_input);
+    std::ostream os(&fb_output);
+    char c;
     Converter converter {};
+    while(( c = is.get()) != -1)
+    {
+        if (c == 13)
+        {
+            continue;
+        }
+        if (c == 10) // newline
+        {
+            converter.convert_expression();
+            std::cout << converter;
+            os << converter;
+            converter.reset();
+        }
+        else
+        {
+            converter.pushc(c);
+        }
 
-    converter.pushc('+');
-    converter.pushc('-');
-    converter.pushc('A');
-    // converter.pushc(' ');
-    converter.pushc('B');
-    converter.pushc('*');
-    converter.pushc('C');
-    converter.pushc('D');
 
-    std::cout << "values pushed" << std::endl;
-
-    converter.convert_expression();
-
-    std::cout << converter << std::endl;
-
-    // std::cout << converter.is_invalid_expression() << std::endl;
-
-
+    }
+    
+    fb_input.close();
+    fb_output.close();
+    
 }

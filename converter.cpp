@@ -117,8 +117,6 @@ Converter::Operand Converter::find_next_operand(Operand& op)
         Operand right_op {right_expression, next };
         Operand right_operand = find_next_operand(right_op);
 
-        // right_operand's expression field is a hanging pointer after this
-        // operation.
         left_operand.expression.append(right_operand.expression);
         left_operand.expression.pushc(c);
         Operand new_operand = Operand{

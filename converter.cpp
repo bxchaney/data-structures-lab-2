@@ -32,30 +32,42 @@ void Converter::pushc(char c)
     // operator. Otherwise, it is an illegal character. All characters are
     // pushed to input, only non-whitespace, legal characters will be shown
     // in the final output.
-    if (
-        !( 
-            ( 
-                c == '+' 
-                || c == '-' 
-                || c == '*' 
-                || c == '/' 
-                || c == '$' 
-                || c == '^'
-                || c == '%'
-            ) 
-            || 
-            (
+
+    // c is an operator
+    if ( 
+            c == '+' 
+            || c == '-' 
+            || c == '*' 
+            || c == '/' 
+            || c == '$' 
+            || c == '^'
+            || c == '%'
+        )
+    {
+        _operators_count++;
+    }
+    
+    // c is an operand
+    else if (
                 ('0' <= c && c <= '9') 
                 || ('A' <= c && c <= 'Z') 
                 || ('a' <= c && c <= 'z')
             )
-            ||
-            (
-                c == 20 // space
-                || c == 9 // tab
+    {
+        _operands_count++;
+    }
+    
+    // c is a space or tab
+    else if (
+                c == ' ' // space
+                || c == '\t' // tab
             )
-        )
-       )
+    {
+        _whitespace_count++;
+    }
+    
+    // c is invalid character
+    else
     {
         _illegal_characters = true;
     }

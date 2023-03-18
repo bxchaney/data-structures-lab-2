@@ -1,0 +1,17 @@
+A
+     A
+AA
+A+B
++
+'
++  A  B-C
+%AB
+/A      ^B  C   
+|AB
++;AB 
++A;B
++AB;
++AB ;
+**AB+;CD 
+**A8+C4 
+

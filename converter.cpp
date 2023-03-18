@@ -121,6 +121,18 @@ Converter::Operand Converter::find_next_operand(Operand& op)
 
 }
 
+bool Converter::is_only_whitespace()
+{
+    return (_input.size() == _whitespace_count);
+}
+
+bool Converter::is_candidate_expression()
+{
+    // A check that the total number of operands is 1 greater than the total
+    // number of operators
+    return (_operands_count == (_operators_count + 1));
+}
+
 void Converter::convert_expression()
 {
     Node* first = _input.get_head();

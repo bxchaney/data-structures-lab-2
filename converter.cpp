@@ -200,12 +200,13 @@ std::ostream& operator<<(std::ostream& os, const Converter& conv)
     }
     else if (conv._invalid_expression)
     {
-        os << "This is an invalid expression";
+        os << "This is an invalid expression" << std::endl;
     }
     else 
     {
-        os << conv._output << std::endl << std::endl;
+        os << conv._output << std::endl;
     }
+    os << std::endl;
     return os;
 }
 

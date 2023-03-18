@@ -22,6 +22,8 @@ class CharList
         CharList();
         CharList(const CharList&);
         ~CharList();
+
+        void operator = (const CharList&);
         
         void pushc(char);
         void append(CharList&);    

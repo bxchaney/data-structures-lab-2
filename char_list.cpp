@@ -12,21 +12,20 @@ CharList::CharList()
 
 CharList::CharList(const CharList& cl)
 {
-    _size = 0;
+    _size = cl._size;
     _head = nullptr;
     _tail = nullptr;
+    _reverse_string = cl._reverse_string;
     Node* current_node = cl._head;
     while (current_node != nullptr)
     {
         pushc(current_node->character);
         current_node = current_node->next;
     }
-    _reverse_string = cl._reverse_string;
 }
 
 CharList::~CharList()
 {
-    std::cout << "CharList Destructor called" << std::endl;
     // If list is not empty
     while (_head != nullptr)
     {
@@ -38,6 +37,20 @@ CharList::~CharList()
         delete current_node;
     }
     _tail = nullptr;
+}
+
+void CharList::operator = (const CharList& cl)
+{
+    _size = cl._size;
+    _reverse_string = cl._reverse_string;
+    _head = nullptr;
+    _tail = nullptr;
+    Node* current_node = cl._head;
+    while (current_node != nullptr)
+    {
+        pushc(current_node->character);
+        current_node = current_node->next;
+    }
 }
 
 void CharList::pushc(char c)

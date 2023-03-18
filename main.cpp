@@ -51,8 +51,6 @@ int main(int argc, char** argv)
         {
             converter.pushc(c);
         }
-
-
     }
     
     fb_input.close();

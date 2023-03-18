@@ -6,10 +6,17 @@
 Converter::Converter() 
 {
     CharList _input {};
+    CharList _output {};
+    
     _illegal_characters = false;
     _invalid_expression = false;
     _recursive_call_counter = 0;
-    CharList _output {};
+    _reversed_output = false;
+
+    _operands_count = 0;
+    _operators_count = 0;
+    _whitespace_count = 0;
+    
 }
 
 
@@ -182,10 +189,17 @@ std::ostream& operator<<(std::ostream& os, const Converter& conv)
 void Converter::reset()
 {
     CharList new_input {};
-    _input = new_input;
+    _input = new_input; // copy assignment
+    _output = new_input; // copy assignment
+    
     _illegal_characters = false;
     _invalid_expression = false;
+    _reversed_output = false;
     _recursive_call_counter = 0;
+
+    _operands_count = 0;
+    _operators_count = 0;
+    _whitespace_count = 0;
 }
 
 int Converter::recursive_call_total()

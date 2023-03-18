@@ -9,10 +9,7 @@ class Converter
         {
             CharList expression;
             Node* node;
-        };
-        
-        // Recursive method
-        Operand find_next_operand(Operand&);
+        }; 
 
         CharList _input;
         CharList _output;
@@ -22,6 +19,15 @@ class Converter
         int _recursive_call_counter;
         bool _reversed_output;
 
+        int _operands_count;
+        int _operators_count;
+        int _whitespace_count;
+
+        // Recursive method
+        Operand find_next_operand(Operand&);
+        bool is_only_whitespace();
+        bool is_candidate_expression();
+        
     public:
 
         Converter();
@@ -35,9 +41,6 @@ class Converter
         void reverse_output();
         friend std::ostream& operator<<(std::ostream&, const Converter&);
         
-        // const char* get_output();
-        // const char* get_output_reversed();
-
         void reset();
         int recursive_call_total();
 

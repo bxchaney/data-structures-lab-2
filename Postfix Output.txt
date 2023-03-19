@@ -1,0 +1,52 @@
+Input: A
+Recursive Calls: 1
+Output: A
+
+Input:     A
+Recursive Calls: 1
+Output: A
+
+Input: AA 
+Recursive Calls: 0
+Output: This is an invalid expression
+
+Input: +
+Recursive Calls: 0
+Output: This is an invalid expression
+
+Input: AB%
+Recursive Calls: 3
+Output: %AB
+
+Input: AB|
+Recursive Calls: 0
+Output: This expression has illegal characters.
+
+Input: AB;^
+Recursive Calls: 4
+Output: This expression has illegal characters.
+
+Input: ab*Cd-+
+Recursive Calls: 7
+Output: +*ab-Cd
+
+Input: A0^B-dE$+7/
+Recursive Calls: 11
+Output: /+-^A0B$dE7
+
+Input: A  b  *  d - EF / 67* 4^+-
+Recursive Calls: 26
+Output: --*Abd+/EF^*674
+
+Input: AB+C%D+EF+-+GH*IJ^KL$-/
+Recursive Calls: 11
+Output: This is an invalid expression
+
+Input: AB+C%D+EF++GH*IJ^KL$-/-
+Recursive Calls: 23
+Output: -++%+ABCD+EF/*GH-^IJ$KL
+
+Input: 
+Recursive Calls: 0
+Output: 
+

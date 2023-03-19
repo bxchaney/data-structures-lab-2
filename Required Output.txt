@@ -1,0 +1,68 @@
+Input: -+ABC
+Recursive Calls: 5
+Output: AB+C-
+
+Input: -A+BC
+Recursive Calls: 5
+Output: ABC+-
+
+Input: $+-ABC+D-EF
+Recursive Calls: 11
+Output: AB-C+DEF-+$
+
+Input: -*A$B+C-DE*EF
+Recursive Calls: 13
+Output: ABCDE-+$*EF*-
+
+Input: **A+BC+C-BA
+Recursive Calls: 11
+Output: ABC+*CBA-+*
+
+Input: /A+BC +C*BA  
+Recursive Calls: 0
+Output: This is an invalid expression
+
+Input: *-*-ABC+BA  
+Recursive Calls: 0
+Output: This is an invalid expression
+
+Input: /+/A-BC-BA  
+Recursive Calls: 0
+Output: This is an invalid expression
+
+Input: *$A+BC+C-BA 
+Recursive Calls: 11
+Output: ABC+$CBA-+*
+
+Input: //A+B0-C+BA
+Recursive Calls: 11
+Output: AB0+/CBA+-/
+
+Input: *$A^BC+C-BA					
+Recursive Calls: 11
+Output: ABC^$CBA-+*
+
+Input: 						
+Recursive Calls: 0
+Output: 
+
+Input: 				
+Recursive Calls: 0
+Output: 
+
+Input: 					
+Recursive Calls: 0
+Output: 
+
+Input: 					
+Recursive Calls: 0
+Output: 
+
+Input: 	
+Recursive Calls: 0
+Output: 
+
+Input: 
+Recursive Calls: 0
+Output: 
+

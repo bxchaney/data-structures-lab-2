@@ -72,6 +72,26 @@ void CharList::pushc(char c)
     _size++;
 }
 
+char CharList::pop()
+{
+    if (_size == 0)
+    {
+        return '\0';
+    }
+
+    Node* prev_node = _tail->prev;
+    prev_node->next = nullptr;
+    char c = _tail->character;
+    _tail->next = nullptr;
+    _tail->prev = nullptr;
+
+    delete _tail;
+    _tail = prev_node;
+
+    _size--;
+    return c;
+}
+
 void CharList::append(CharList& list)
 {  
     Node* new_node = list.get_head();

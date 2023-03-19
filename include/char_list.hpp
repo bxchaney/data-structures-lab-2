@@ -26,6 +26,7 @@ class CharList
         void operator = (const CharList&);
         
         void pushc(char);
+        char pop();
         void append(CharList&);    
         friend std::ostream& operator<<(std::ostream&, const CharList&);
         int size();

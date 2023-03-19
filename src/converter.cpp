@@ -183,6 +183,7 @@ bool Converter::is_invalid_expression()
 
 void Converter::reverse_output()
 {
+    _input.reverse();
     _output.reverse();
 }
 

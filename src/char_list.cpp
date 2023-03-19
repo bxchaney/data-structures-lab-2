@@ -32,8 +32,6 @@ CharList::~CharList()
         Node* current_node = _head;
         _head = _head->next;
 
-        current_node->prev = nullptr;
-        current_node->next = nullptr;
         delete current_node;
     }
     _tail = nullptr;
@@ -85,24 +83,19 @@ char CharList::pop()
         delete _head;
         _head = nullptr;
         _tail = nullptr;
-        _size--;
-        return c;
+        
     }
     else
     {
         Node* prev_node = _tail->prev;
         prev_node->next = nullptr;
         c = _tail->character;
-        _tail->next = nullptr;
-        _tail->prev = nullptr;
 
         delete _tail;
         _tail = prev_node;
-        
-
-        _size--;
-        return c;
     }
+    _size--;
+    return c;
 }
 
 void CharList::append(CharList& list)

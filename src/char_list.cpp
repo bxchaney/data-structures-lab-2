@@ -78,18 +78,31 @@ char CharList::pop()
     {
         return '\0';
     }
+    char c;
+    if (_size == 1)
+    {
+        c = _head->character;
+        delete _head;
+        _head = nullptr;
+        _tail = nullptr;
+        _size--;
+        return c;
+    }
+    else
+    {
+        Node* prev_node = _tail->prev;
+        prev_node->next = nullptr;
+        c = _tail->character;
+        _tail->next = nullptr;
+        _tail->prev = nullptr;
 
-    Node* prev_node = _tail->prev;
-    prev_node->next = nullptr;
-    char c = _tail->character;
-    _tail->next = nullptr;
-    _tail->prev = nullptr;
+        delete _tail;
+        _tail = prev_node;
+        
 
-    delete _tail;
-    _tail = prev_node;
-
-    _size--;
-    return c;
+        _size--;
+        return c;
+    }
 }
 
 void CharList::append(CharList& list)

@@ -28,8 +28,8 @@ $(APP_DIR)/$(TARGET): $(OBJECTS)
 .PHONY: all build clean debug release info
 
 build:
-	@mkdir -p $(APP_DIR)
-	@mkdir -p $(OBJ_DIR)
+	@mkdir -pv $(APP_DIR)
+	@mkdir -pv $(OBJ_DIR)
 
 debug: CXXFLAGS += -DDEBUG -g
 debug: all

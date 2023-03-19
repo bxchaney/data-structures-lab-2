@@ -1,7 +1,7 @@
 #include<iostream>
 #include<fstream>
-#include"char_list.cpp"
-#include"converter.cpp"
+#include"char_list.hpp"
+#include"converter.hpp"
 
 
 

@@ -100,7 +100,7 @@ char CharList::pop()
 
 void CharList::append(CharList& list)
 {  
-    Node* new_node = list.get_head();
+    Node* new_node = list._head;
 
     while (new_node != nullptr)
     {
@@ -146,10 +146,5 @@ void CharList::reverse()
 Node* CharList::get_head()
 {
     return _head;
-}
-
-Node* CharList::get_tail()
-{
-    return _tail;
 }
 

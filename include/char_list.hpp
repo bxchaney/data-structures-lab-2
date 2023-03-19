@@ -33,6 +33,5 @@ class CharList
         void reverse();
 
         Node* get_head();
-        Node* get_tail();
 
 };

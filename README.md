@@ -12,7 +12,7 @@ I have included my compiled executable in the top directory of this zip, it will
 
 ## How to Build
 
-- The Makefile configuration assumes that the user is in a Unix-like environment with access to the mkdir and rm commands.
+- Assuming the user has access to GNU make. The Makefile configuration assumes that the user is in a Unix-like environment with access to the mkdir and rm commands.
 - In the directory containing Makefile, run the command run `make`. This will created the directories ./build/objects and ./build/apps . ./build/objects will contain the unlinked, compiled object files used to make the program and ./build/apps will contain the final linked executable. Then, you should see the following commands as the executable is built: 
 
     `g++ -pedantic-errors -Wall -Wextra -Werror -Iinclude/ -c src/char_list.cpp -MMD -o build/objects/src/char_list.o`

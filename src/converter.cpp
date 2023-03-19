@@ -134,27 +134,19 @@ Converter::Operand Converter::find_next_operand(Operand& op)
 
 }
 
-bool Converter::is_only_whitespace()
-{
-    return (_input.size() == _whitespace_count);
-}
-
-bool Converter::is_candidate_expression()
-{
-    // A check that the total number of operands is 1 greater than the total
-    // number of operators
-    return (_operands_count == (_operators_count + 1));
-}
 
 void Converter::convert_expression()
 {
-    if (is_only_whitespace())
+    // If the input is exclusively whitespace
+    if (_input.size() == _whitespace_count)
     {
         return;
     }
-    if (!is_candidate_expression())
+    
+    // A candidate expression must have satisfy:
+    // Total number of Operands = total number of operators + 1
+    if (_operands_count != (_operators_count + 1))
     {
-        
         _invalid_expression = true;
         return;
     }
@@ -171,15 +163,6 @@ void Converter::convert_expression()
     }
 }
 
-bool Converter::has_illegal_character()
-{
-    return _illegal_characters;
-}
-
-bool Converter::is_invalid_expression()
-{
-    return _invalid_expression;
-}
 
 void Converter::reverse_output()
 {
@@ -224,7 +207,3 @@ void Converter::reset()
     _whitespace_count = 0;
 }
 
-int Converter::recursive_call_total()
-{
-    return _recursive_call_counter;
-}

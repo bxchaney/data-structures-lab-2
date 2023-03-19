@@ -25,8 +25,6 @@ class Converter
 
         // Recursive method
         Operand find_next_operand(Operand&);
-        bool is_only_whitespace();
-        bool is_candidate_expression();
         
     public:
 
@@ -35,13 +33,12 @@ class Converter
 
         void pushc(char);
         void convert_expression();
-        bool has_illegal_character();
-        bool is_invalid_expression();
-
         void reverse_output();
+        void reset();
+        
         friend std::ostream& operator<<(std::ostream&, const Converter&);
         
-        void reset();
-        int recursive_call_total();
+        
+        
 
 };

@@ -20,7 +20,7 @@ Output: This is an invalid expression
 
 Input: '
 Recursive Calls: 0
-Output: This expression has illegal characters.
+Output: 
 
 Input: +  A  B-C
 Recursive Calls: 7
@@ -36,27 +36,39 @@ Output: ABC^/
 
 Input: |AB
 Recursive Calls: 0
-Output: This expression has illegal characters.
+Output: This is an invalid expression
+
+Input: ;+AB
+Recursive Calls: 4
+Output: AB+
 
 Input: +;AB 
 Recursive Calls: 4
-Output: This expression has illegal characters.
+Output: AB+
 
 Input: +A;B
 Recursive Calls: 4
-Output: This expression has illegal characters.
+Output: AB+
 
 Input: +AB;
 Recursive Calls: 3
-Output: This expression has illegal characters.
+Output: AB+
 
 Input: +AB ;
 Recursive Calls: 3
-Output: This expression has illegal characters.
+Output: AB+
+
+Input: _*_A_B_
+Recursive Calls: 6
+Output: AB*
+
+Input: _**_?###_C_!~D%_E_F__
+Recursive Calls: 19
+Output: CD*EF%*
 
 Input: **AB+;CD 
 Recursive Calls: 8
-Output: This expression has illegal characters.
+Output: AB*CD+*
 
 Input: **A8+C4 
 Recursive Calls: 7

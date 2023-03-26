@@ -106,14 +106,13 @@ class Converter
         CharList _input;
         CharList _output;
 
-        bool _illegal_characters;
         bool _invalid_expression;
         int _recursive_call_counter;
         bool _reversed_output;
 
         int _operands_count;
         int _operators_count;
-        int _whitespace_count;
+        int _trivial_char_count;
 
         // Recursive method
         Operand find_next_operand(Operand&);

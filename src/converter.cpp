@@ -7,14 +7,13 @@ Converter::Converter()
     CharList _input {};
     CharList _output {};
     
-    _illegal_characters = false;
     _invalid_expression = false;
     _recursive_call_counter = 0;
     _reversed_output = false;
 
     _operands_count = 0;
     _operators_count = 0;
-    _whitespace_count = 0;
+    _trivial_char_count = 0;
     
 }
 
@@ -58,19 +57,10 @@ void Converter::pushc(char c)
         _operands_count++;
     }
     
-    // c is a space or tab
-    else if (
-                c == ' ' // space
-                || c == '\t' // tab
-            )
-    {
-        _whitespace_count++;
-    }
-    
-    // c is invalid character
+    // c is an invalid character or whitespace
     else
     {
-        _illegal_characters = true;
+        _trivial_char_count++;
     }
     _input.pushc(c);
 }
@@ -151,7 +141,7 @@ Converter::Operand Converter::find_next_operand(Operand& op)
 void Converter::convert_expression()
 {
     // If the input is exclusively whitespace
-    if (_input.size() == _whitespace_count)
+    if (_input.size() == _trivial_char_count)
     {
         return;
     }
@@ -192,11 +182,8 @@ std::ostream& operator<<(std::ostream& os, const Converter& conv)
     os << "Input: " << conv._input << std::endl;
     os << "Recursive Calls: " << conv._recursive_call_counter << std::endl;
     os << "Output: ";
-    if (conv._illegal_characters)
-    {
-        os << "This expression has illegal characters." << std::endl;
-    }
-    else if (conv._invalid_expression)
+
+    if (conv._invalid_expression)
     {
         os << "This is an invalid expression" << std::endl;
     }
@@ -215,13 +202,12 @@ void Converter::reset()
     _input = new_input; // copy assignment
     _output = new_input; // copy assignment
     
-    _illegal_characters = false;
     _invalid_expression = false;
     _reversed_output = false;
     _recursive_call_counter = 0;
 
     _operands_count = 0;
     _operators_count = 0;
-    _whitespace_count = 0;
+    _trivial_char_count = 0;
 }
 

@@ -30,8 +30,8 @@ Input: %AB
 Recursive Calls: 3
 Output: AB%
 
-Input: /A      ^B  C   
-Recursive Calls: 13
+Input: /A   _   ^B  C   
+Recursive Calls: 14
 Output: ABC^/
 
 Input: |AB

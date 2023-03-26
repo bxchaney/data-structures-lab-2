@@ -6,7 +6,7 @@ A+B
 '
 +  A  B-C
 %AB
-/A      ^B  C   
+/A   _   ^B  C   
 |AB
 ;+AB
 +;AB 

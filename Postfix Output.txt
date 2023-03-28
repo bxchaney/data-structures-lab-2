@@ -20,11 +20,11 @@ Output: %AB
 
 Input: AB|
 Recursive Calls: 0
-Output: This expression has illegal characters.
+Output: This is an invalid expression
 
 Input: AB;^
 Recursive Calls: 4
-Output: This expression has illegal characters.
+Output: ^AB
 
 Input: ab*Cd-+
 Recursive Calls: 7
